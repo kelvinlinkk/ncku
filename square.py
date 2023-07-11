@@ -38,13 +38,15 @@ def pcMove(fromX, fromY):
         if isLegalMove(fromX,fromY,desX,desY) and (playerData[0] != desX or playerData[1] != desY):
             break
     return desX, desY
+
 pcData = [3,3,0] #x,y,sign
 playerData = [0,0,0] #x,y,sign
 preWinner = 0 #1=電腦 0=玩家
+# 可以用鍵值字典結合猜拳何數字
+
 drawImg(playerData[0],playerData[1],[3,3])
 while 1:
     if playerData[0] == pcData[0] or playerData[1] == pcData[1]:
-        print(playerData[0],playerData[1],pcData[0],pcData[1])
         if preWinner:
             print("電腦獲勝")
         else:
@@ -75,4 +77,5 @@ while 1:
         print("輸入錯誤")
     playerData[0] = inputX
     playerData[1] = inputY
-    drawImg(playerData[0],playerData[1],pcMove(pcData[0],pcData[1]))
+    pcData[0],pcData[1] = pcMove(pcData[0],pcData[1])
+    drawImg(playerData[0],playerData[1],[pcData[0],pcData[1]])
