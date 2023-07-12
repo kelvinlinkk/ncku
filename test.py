@@ -7,4 +7,4 @@ mydict = dict([[1,"123"],[2,"456"]])
 print(mydict)
 print(mydict.pop(1))
 print(mydict)
-print[ for i in mylist]
+print(sum([i if type(i) == type(1.1) else 0 for i in mylist]))
