@@ -1,9 +1,14 @@
 import random
-def drawImg(playerX, playerY, pcPos): # 繪製地圖
+from time import sleep
+import os
+
+def drawImg(): # 繪製地圖
+    pcPos = [pcData[0],pcData[1]]
+    print('        0   1   2   3  ',end='')
     for i in range(4):
-        print('\n-----------------\n|', end='')
+        print('\n      -----------------\n    ' + str(i) + ' |', end='')
         for j in range(4):
-            if j == playerX and i == playerY:
+            if j == playerData[0] and i == playerData[1]:
                 print(' O ', end='')
             elif j == pcPos[0] and i == pcPos[1]:
                 print(' X ', end='')
@@ -12,7 +17,8 @@ def drawImg(playerX, playerY, pcPos): # 繪製地圖
             else:
                 print('   ', end='')
             print('|', end='')
-    print('\n-----------------')
+    print('\n      -----------------')
+    sleep(1)
 
 def isLegalMove(fromX, fromY, toX, toY): # 判斷移動合法性
     # 是否在界內
@@ -41,35 +47,34 @@ def pcMove(fromX, fromY):
 
 pcData = [3,3,0] #x,y,sign
 playerData = [0,0,0] #x,y,sign
-preWinner = 0 #1=電腦 0=玩家
+preWinner = "玩家" #1=電腦 0=玩家
+mydict = {0:"剪刀",1:"石頭",2:"布"}
 # 可以用鍵值字典結合猜拳何數字
 
-drawImg(playerData[0],playerData[1],[3,3])
+drawImg()
 while 1:
     if playerData[0] == pcData[0] or playerData[1] == pcData[1]:
-        if preWinner:
-            print("電腦獲勝")
+        if preWinner == "電腦":
+            print("電腦獲勝!")
         else:
-            print("玩家獲勝")
+            print("玩家獲勝!")
         break
     while True:
-        playerData[2] = int(input("PK方塊剪刀石頭布，你要出0=剪刀,1=石頭,2=布"))
+        playerData[2] = int(input("PK方塊剪刀石頭布，你要出0=剪刀,1=石頭,2=布："))
         pcData[2] = random.randint(0,2)
-        print("電腦出" + str(pcData[2]))
+        print("電腦出" + mydict[pcData[2]])
         if playerData[2] != pcData[2]:
             break
-    if playerData[2] == 0:
-        if pcData[2] == 2:
-            preWinner = 0
-        else:
-            preWinner = 1
+    if (playerData[2] == 0 and pcData[2] == 2) or (playerData[2] == 1 and pcData[2] == 1) or (playerData[2] == 2 and pcData[2] == 1):
+        preWinner = "玩家"
     else:
-        if pcData[2] > playerData[2]:
-            preWinner = 1
-        else:
-            preWinner = 0
-    print(preWinner)
+        preWinner = "電腦"
+    print(preWinner + "猜拳贏了\n--------------------")
+    sleep(1)
+    os.system('clear')
+    drawImg()
     while True:
+        print("PK方塊跳")
         inputX = int(input("輸入x座標:"))
         inputY = int(input("輸入y座標:"))
         if isLegalMove(playerData[0],playerData[1],inputX,inputY):
@@ -78,4 +83,5 @@ while 1:
     playerData[0] = inputX
     playerData[1] = inputY
     pcData[0],pcData[1] = pcMove(pcData[0],pcData[1])
-    drawImg(playerData[0],playerData[1],[pcData[0],pcData[1]])
+    drawImg()
+os.system('set /p close=\"按任意鍵關閉\"')
