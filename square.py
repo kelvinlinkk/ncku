@@ -50,7 +50,7 @@ playerData = [0,0,0] #x,y,sign
 preWinner = "玩家" #1=電腦 0=玩家
 mydict = {0:"剪刀",1:"石頭",2:"布"}
 # 可以用鍵值字典結合猜拳何數字
-
+os.system("clear")
 drawImg()
 while 1:
     if playerData[0] == pcData[0] or playerData[1] == pcData[1]:
@@ -83,5 +83,6 @@ while 1:
     playerData[0] = inputX
     playerData[1] = inputY
     pcData[0],pcData[1] = pcMove(pcData[0],pcData[1])
+    os.system("clear")
     drawImg()
 os.system('set /p close=\"按任意鍵關閉\"')

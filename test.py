@@ -8,3 +8,9 @@ print(mydict)
 print(mydict.pop(1))
 print(mydict)
 print(sum([i if type(i) == type(1.1) else 0 for i in mylist]))
+
+'''
+a = [[]]
+a[0].append(1)
+print(len(a))
+'''
