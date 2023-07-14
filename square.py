@@ -60,7 +60,7 @@ while 1:
             print("玩家獲勝!")
         break
     while True:
-        playerData[2] = int(input("PK方塊剪刀石頭布，你要出0=剪刀,1=石頭,2=布："))
+        playerData[2] = print(list(mydict.values()).index(input("PK方塊剪刀石頭布，你要出：")))
         pcData[2] = random.randint(0,2)
         print("電腦出" + mydict[pcData[2]])
         if playerData[2] != pcData[2]:
@@ -70,7 +70,7 @@ while 1:
     else:
         preWinner = "電腦"
     print(preWinner + "猜拳贏了\n--------------------")
-    sleep(1)
+    input()
     os.system('clear')
     drawImg()
     while True:

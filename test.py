@@ -19,3 +19,4 @@ print([x for x in range(-3)])
 
 print(random.choice([0,1,2,3]))
 print([0,1,3,2].index(max([0,1,2])))
+print([i for i in "Kelvin"])
