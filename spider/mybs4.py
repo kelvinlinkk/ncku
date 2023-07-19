@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import os
 
-url = 'http://127.0.0.1:3000/home.html'
+url = 'https://kelvinlinkk.github.io/home.html'
 txt = requests.get(url).text
 soup = BeautifulSoup(txt,'html.parser')
 # print(soup.prettify())
